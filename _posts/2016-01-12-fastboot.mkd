@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Что такое fastboot и как с ним работать"
-date:   2016-01-01 15:00:00 +0300
+date:   2016-01-12 15:00:00 +0300
 categories: tools fastboot
 ---
 
