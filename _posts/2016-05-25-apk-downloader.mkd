@@ -1,0 +1,8 @@
+---
+layout: post
+title:  "Как быстро скачать apk из Google Play?"
+date:   2016-05-25 15:00:00 +0300
+categories: tips
+---
+Копируем адрес приложения в Google Play, затем открываем сайт [APK Downloader](http://apps.evozi.com/apk-downloader/), вставляем в окно ввода и нажимаем кнопку Generate Download Link.
+
