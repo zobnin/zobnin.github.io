@@ -2,7 +2,7 @@
 layout: post
 title:  "Советы по энергосбережению Android"
 date:   2015-12-21 19:51:48 +0300
-categories: tips
+categories: tips battery
 ---
 Краткий список советов по продлению жизни смартфона от батареи.
 
