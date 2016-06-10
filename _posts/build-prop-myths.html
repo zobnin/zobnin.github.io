@@ -1,0 +1,42 @@
+<p>
+Файл /system/build.prop присутствует в любой Android-прошивке и хранит внутри себя большое количество низкоуровневых настроек, а также информацию об устройстве и самой прошивке. Наряду с файлами каталогов /proc и /sys, build.prop принято использовать для оптмизации устройства и решения различных проблем. Однако, как выяснилось, многие рекомендации по редактированию файла, приведенные в различных форумах, вообще не имеют никакого эффекта, так как система даже не знает о их существовании.
+</p>
+
+::cut::
+
+<p>
+Пользователь LaraCraft304 с форума xda-developers провел небольшое исследование, направленное на выяснение влияния тех или иных настроек файла build.prop на производительность и поведение системы, и открыл неожиданную информацию. Оказалось, что около 20 настроек, рекомендуемых людьми в форумах, вообще нигде не опоминаются в исходных текстах Android, а это значит, что они были просто выдуманы. Вот приведенный им список:
+<ul><li>ro.ril.disable.power.collapse</li>
+<li>ro.mot.eri.losalert.delay</li>
+<li>ro.config.hw_fast_dormancy</li>
+<li>ro.config.hw_power_saving</li>
+<li>windowsmgr.max_events_per_sec</li>
+<li>persist.cust.tel.eons</li>
+<li>ro.max.fling_velocity</li>
+<li>ro.min.fling_velocity</li>
+<li>ro.kernel.checkjni</li>
+<li>dalvik.vm.verify-bytecode</li>
+<li>debug.performance.tuning</li>
+<li>video.accelerate.hw</li>
+<li>ro.media.dec.jpeg.memcap</li>
+<li>ro.config.nocheckin</li>
+<li>profiler.force_disable_ulog</li>
+<li>profiler.force_disable_err_rpt</li>
+<li>ersist.sys.shutdown.mode</li>
+<li>ro.HOME_APP_ADJ</li>
+</ul>
+</p><p>
+При этом LaraCraft304 отмечает, что некоторые из этих настроек либо уже устарели, либо были просто неправильно написаны. Например, dalvik.vm.verify-bytecode в последних версиях Android (KitKat) был заменен на dalvik.vm.dexopt-flags, а ro.kernel.checkjni является неправильным написанием опции ro.kernel.android.checkjni. Опция ro.HOME_APP_ADJ была удалена.
+</p><p>
+Также он подчеркнул, что есть опции, которые работают только в CyanogenMod и производных прошивках. На данный момент их четыре:
+<ul>
+	<li>persist.sys.purgeable_assets</li>
+	<li>persist.sys.use_dithering</li>
+	<li>persist.sys.jit-mode (значения "fast" или "portable")</li>
+	<li>pm.sleep_mode (только для чипсетов MSM)</li>
+</ul>
+</p>
+
+<p class="news-links">
+    Источник: <a href="http://forum.xda-developers.com/showthread.php?t=2544330">forum.xda-developers.com</a>
+</p>

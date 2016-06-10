@@ -1,0 +1,83 @@
+<p>
+Наверняка многие из тех, кто читает этот блог, задумывались о том, а как собственно происходит сборка Android из исходных текстов. Что делают люди, которые подготавливают для нас AOSP-сборки с новыми версиями Android и сколько времени это все занимает. В этой статье я подробно распишу весь процесс сборки AOSP, от установки компилятора и получения исходных текстов до прошивки смартфона.
+</p>
+
+::cut
+
+<h3>Требования</h3>
+<p>
+<ul>
+    <li>64-разрядная сборка Ubuntu Linux;</li>
+    <li>50 Гб свободного пространства на диске;</li>
+    <li>Как минимум 4 Гб оперативной памяти;</li>
+</ul>
+</p>
+<h3>Подготовка</h3>
+<p>
+Открываем терминал и устанавливаем необходимые для сборки пакеты:
+<pre>
+$ sudo apt-get install \
+git-core gnupg flex bison gperf libsdl1.2-dev libesd0-dev \
+libwxgtk2.8-dev squashfs-tools build-essential zip curl \
+libncurses5-dev zlib1g-dev openjdk-6-jre openjdk-6-jdk \
+pngcrush schedtool libxml2 libxml2-utils xsltproc \
+g++-multilib lib32z1-dev lib32ncurses5-dev lib32readline-gplv2-dev gcc-multilib
+</pre>
+Также нам понадобится инструмент repo, представляющий собой python-обертку вокруг системы контроля версий git:
+<pre>
+$ mkdir ~/bin
+$ curl https://dl-ssl.google.com/dl/googlesource/git-repo/repo > ~/bin/repo
+$ chmod a+x ~/bin/repo
+$ export PATH=$PATH:~/bin
+</pre>
+</p>
+<h3>Получение исходных текстов</h3>
+<p>
+Создаем каталог для исходников:
+<pre>
+$ mkdir -p android/system
+$ cd android/system
+</pre>
+Инициализируем репозиторий с помощью repo:
+<pre>
+$ repo init -u \
+    https://android.googlesource.com/platform/manifest
+</pre>
+На экран будет выведено сообщение о необходимости ввести email, но можно смело жать Enter. Теперь получаем исходные тексты (в сумме около 15 Гб):
+<pre>
+$ repo sync
+</pre>
+<h3>Сборка</h3>
+<p>
+Перед тем как начать процесс компиляции выполним подготовку окружения с помощью запуска скрипта envsetup.sh:
+<pre>
+$ source build/envsetup.sh
+</pre>
+Далее запускаем команду lunch, которая предложит нам выбрать устройство, для которого осуществляется сборка:
+<pre>
+$ lunch
+</pre>
+Выбираем full_maguro-userdebug для Galaxy Nexus или full_mako_userdebug для Nexus 4. Далее запускаем процесс компиляции, указав количество ядер процессора после опции -j:
+<pre>
+$ make -j4
+</pre>
+После окончании сборки (которая длится на современной системе от 6 до 8 часов) в каталоге out/target/product/имя_устройства/, появятся следующие файлы:
+<ul>
+<li>boot.img - загрузчик</li>
+<li>ramdisk.img - рамдиск (на мне нужен)</li>
+<li>recovery.img - консоль восстановления</li>
+<li>ramdisk-recovery.img - рамдиск консоли восстановления</li>
+<li>system.img - Android</li>
+<li>userdata.img - раздел /data</li>
+</ul>
+Для установки понадобятся ADB и fastboot (о том как их установить и настроить я уже писал <a href="http://androidstreet.net/2013/03/10/adb/">здесь</a> и <a href="http://androidstreet.net/2013/12/12/fastboot/">здесь</a>). Подключаем смартфон к ПК и выполняем следующие команды
+<pre>
+$ adb reboot-bootloader
+$ fastboot flash boot boot.img
+$ fastboot flash system system.img
+$ fastboot continue
+</pre>
+</p><p>
+Это все. Теперь на ваше устройство установлена прошивка, собранная лично вами.
+</p>
+

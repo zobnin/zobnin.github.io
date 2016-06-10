@@ -1,0 +1,25 @@
+<p>
+В феврале Google <a href="http://androidstreet.ru/2012/02/03/google-bouncer/">представила</a> сервис Bouncer для борьбы с вредоносным ПО, публикуемым в репозитории Google Play. Одной из задач Bouncer является запуск приложения в виртуальном окружении с целью его всестороннего тестирования. Однако, как показали исследования, виртуальную среду очень легко обнаружить и написать приложение, которое будет совершать зловредные действия только на реальном устройстве показывая абсолютно легитимное поведение в эмуляторе и, таким образом, обходя тесты Bouncer.
+</p>
+
+::cut::
+
+<p>
+Исследователи безопасности Чарли Миллер (Charlie Miller) и Джон Оберхейд (Jon Oberheide) из Duo Security выяснили, что виртуальная среда Bouncer имеет множество признаков, по которым ее легко обнаружить. К примеру, виртуальный смартфон всегда привязан к аккаунту пользователя Miles.Karlson@gmail.com, в списке контактов которого находится только Michelle.k.levin@gmail.com, а на SD-карте размещены только две фотографии: Cat.jpg и Ladygaga.jpg. Если же взглянуть в каталог /sys, то можно увидеть каталог qemu_trace, однозначно идентифицирующий эмулятор QEMU, в котором работает "смартфон".
+</p>
+
+<p>
+Всю эту информацию удалось обнаружить с помощью простого бэкдора, который устанавливает соединение с удаленным сервером в момент запуска и позволяет получить доступ к командной строке. Авторы загрузили его в Play Market и, когда приложение было запущено в эмуляторе Bouncer, получили возможность исследовать эмулируемую систему. Как это все происходило можно увидеть в этом видео:
+</p>
+
+<p>
+<object style="height: 350px; width: 630px"><param name="movie" value="http://www.youtube.com/v/ZEIED2ZLEbQ?version=3&feature=player_detailpage"><param name="allowFullScreen" value="true"><param name="allowScriptAccess" value="always"><embed src="http://www.youtube.com/v/ZEIED2ZLEbQ?version=3&feature=player_detailpage" type="application/x-shockwave-flash" allowfullscreen="true" allowScriptAccess="always" width="630" height="350"></object>
+</p>
+
+<p>
+Авторы уже уведомили Google о проблеме и планируют представить более детальную информацию о методах обхода Bouncer на конференции Summercon, которая пройдет в Нью-Йорке на этой неделе.
+</p>
+
+<p class="news-links">
+    Источник: <a href="http://www.androidpolice.com/2012/06/04/duo-security-sends-a-trojan-horse-inside-googles-bouncer-explores-and-fingerprints-its-guts/">www.androidpolice.com</a>
+</p>
