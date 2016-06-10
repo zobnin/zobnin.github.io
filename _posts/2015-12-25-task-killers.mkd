@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Почему Task Killer'ы зло"
-date:   2016-12-25 15:00:00 +0300
+date:   2015-12-25 15:00:00 +0300
 categories: myph battery
 ---
 
