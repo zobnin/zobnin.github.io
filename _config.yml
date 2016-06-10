@@ -6,16 +6,14 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: Androiding.com
+title: execbit.com
 email: zobnin@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+    Личный блог о работе
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://android.com" # the base hostname & protocol for your site
-twitter_username: ru_android
-#github_username:  jekyll
+url: "http://execbit.ru" # the base hostname & protocol for your site
+twitter_username: ezobnin
+github_username:  zobnin
 
 # Build settings
 markdown: kramdown
