@@ -2,7 +2,7 @@
 title: execbit.ru
 email: zobnin@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-    Личный блог о работе
+    Блог об Android и UNIX
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://execbit.ru" # the base hostname & protocol for your site
 twitter_username: ezobnin
